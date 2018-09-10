@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>    
+    <script type="text/javascript">
+      // Initialize Firebase
+      var config = {
+        apiKey: "xxxxx",
+        authDomain: "xxxxx",
+        databaseURL: "xxxxx",
+        projectId: "xxxxx",
+        storageBucket: "xxxxx",
+        messagingSenderId: "xxxxx"
+      }
+      firebase.initializeApp(config)
+      let db = firebase.firestore()
+      const collection_name = "gourmet_gallery"
+      // send message to the
+      let ref = db.collection(collection_name).orderBy(`sort_key`)
+      let count = 0
+      ref.get().then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {   
+            let data = doc.data();
+            data.id = count
+            window.parent.postMessage(data, "*")
+            count++;
+          })
+      })
+      .catch(function(error) {
+        console.log("Error getting documents: ", error);
+      });
+
+    </script>
+  </head>
+  <body onload="init();"></body>
+</html>

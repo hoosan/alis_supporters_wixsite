@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <style>
+      .button {
+        background-color: #155DE9;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        font-family: 'Arial';
+      }
+      .label {
+        font-family: 'Arial';
+      }
+      .input {
+        font-size: 14px;
+      }
+    </style>
+    <script type="text/javascript">
+      function button_click() {
+        let num = 1
+        window.parent.postMessage(num, "*")
+      }
+    </script>
+  </head>
+  <body>
+    <button class="button" onclick="button_click()">Previous</button>
+  </body>
+</html>
